@@ -22,7 +22,7 @@ const Carousel = () => {
   useEffect(() => {
         setInterval(() => {
             nextSlide();
-        }, 2000);
+        }, 5000);
   }, [currentPerson])
   
 
