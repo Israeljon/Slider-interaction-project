@@ -1,6 +1,6 @@
 import React from "react";
 import { shortList, list, longList } from "./data";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaQuoteRight } from "react-icons/fa";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 const Carousel = () => {
@@ -18,8 +18,15 @@ const Carousel = () => {
       return result;
     });
   };
+  useEffect(() => {
+    let sliderId = setinterval(() => {
+      nextSlide();
+    }, 5000);
+    return () => {
+      clearinterval(sliderId);
+    };
+  }, [currentPerson]);
 
-  
   return (
     <section className="slider-container">
       {people.map((person, personIndex) => {
@@ -28,7 +35,7 @@ const Carousel = () => {
           <article
             className="slide"
             style={{
-              transform: `translateX(${100 *(personIndex - currentPerson)}%)`,
+              transform: `translateX(${100 * (personIndex - currentPerson)}%)`,
               opacity: personIndex === currentPerson ? 1 : 0,
               visibility: personIndex === currentPerson ? "visible" : "hidden",
             }}
