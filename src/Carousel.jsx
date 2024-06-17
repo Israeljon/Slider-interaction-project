@@ -1,6 +1,6 @@
 import React from "react";
 import { shortList, list, longList } from "./data";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FaQuoteRight } from "react-icons/fa";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 const Carousel = () => {
@@ -19,18 +19,18 @@ const Carousel = () => {
     });
   };
 
-  useEffect(() => {
-    let sliderId = setInterval(() => {
-      nextSlide();
-    }, 5000);
-    return () => {
-      clearInterval(sliderId);
-    };
-  }, [currentPerson]);
+  // useEffect(() => {
+  //   let sliderId = setInterval(() => {
+  //     nextSlide();
+  //   }, 5000);
+  //   return () => {
+  //     clearInterval(sliderId);
+  //   };
+  // }, [currentPerson]);
 
   return (
     <section className="slider-container">
-      {people.map((person, personIndex) => {
+      {list.map((person, personIndex) => {
         const { id, image, name, title, quote } = person;
         return (
           <article
@@ -43,10 +43,10 @@ const Carousel = () => {
             key={id}
           >
             <img src={image} alt={name} className="person-img" />
+            <p className="text">{quote}</p>
             <h5 className="name">{name}</h5>
             <p className="title">{title}</p>
-            <p className="text">{quote}</p>
-            <FaQuoteRight className="icon" />
+            {/* <FaQuoteRight className="icon" /> */}
           </article>
         );
       })}
